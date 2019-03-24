@@ -21,6 +21,7 @@ public class Ticket {
     private int ticketid;
     
     private LocalDateTime ticketdate;
+    private Player ticketplayer;
     private SortedSet<Integer> selectednumbers = new TreeSet<>();
     private SortedSet<Integer> selectedjokernumbers = new TreeSet<>();
     final double cost = 2.0;
@@ -37,9 +38,18 @@ public class Ticket {
 
     public Ticket(int ticketid, Scanner sc) {
         this.ticketid = ticketid;
+        this.ticketdate = LocalDateTime.now();
         chooseNumbers(sc);
         chooseJokerNumbers(sc);
-        this.toString();
+    }
+
+    public int getTicketid() {
+        return ticketid;
+    }
+    
+    
+    public void addPlayerToTicket(Player player) {
+        this.ticketplayer = player;
     }
     
 
@@ -73,7 +83,13 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" + "ticketid=" + ticketid + ", ticketdate=" + ticketdate + ", \nselectednumbers=" + selectednumbers + ", \nselectedjokernumbers=" + selectedjokernumbers + ", \ncost=" + cost + ", startnum=" + startnum + ", endnum=" + endnum + ", minimumnums=" + minimumnums + ", maxnums=" + maxnums + ", startjokernum=" + startjokernum + ", endjokernum=" + endjokernum + ", minimumjokernums=" + minimumjokernums + ", maxjokernums=" + maxjokernums + '}';
+        return "\nYour Ticket: "
+                + "\n***Ticket id=" + ticketid + ", "
+                + "\n***Ticket date=" + ticketdate + ", "
+                + "\n***Player=" + ticketplayer + ", "
+                + "\n***Selected numbers=" + selectednumbers + ", "
+                + "\n***Selected joker numbers=" + selectedjokernumbers + ", "
+                + "\n***Cost=" + cost;
     }
     
     

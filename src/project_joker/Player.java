@@ -5,6 +5,7 @@
  */
 package project_joker;
 
+import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -47,7 +48,16 @@ public class Player {
         this.playerstickets = playerstickets;
     }
     
+    public void playNewTicket(OPAP opap) {
     
+        System.out.println("\nInitiating your new ticket.");
+        Ticket ticket = new Ticket(opap.returnTicketId(), opap.sc);
+        this.playerstickets.put(ticket.getTicketid(), ticket);
+        opap.addTicketToOPAP(ticket);
+        ticket.addPlayerToTicket(this);
+        System.out.println(ticket.toString());
+    
+    }
 
     @Override
     public String toString() {
