@@ -6,6 +6,7 @@
 package project_joker;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
@@ -103,6 +104,16 @@ if(arraylist.size()==settoreturn.size()) {
 }
 
 }
+
+    public static boolean checkIfWin(SortedSet comparetothissortedset, SortedSet sortedsettobecompared) {
+        
+        if(sortedsettobecompared.containsAll(comparetothissortedset)){
+            return true;
+        } else {
+            return false; 
+        }
+
+    };
 
 //public static void printList(TreeMap treemap) {
 //

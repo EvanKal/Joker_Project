@@ -45,6 +45,14 @@ public class Draw {
     public int getDrawid() {
         return drawid;
     }
+
+    public SortedSet<Integer> getWinningnumbers() {
+        return winningnumbers;
+    }
+
+    public SortedSet<Integer> getWinningjokernumber() {
+        return winningjokernumber;
+    }
     
     
     

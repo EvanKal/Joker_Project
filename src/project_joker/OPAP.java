@@ -99,9 +99,33 @@ public class OPAP {
     public void newDraw() {
     Draw draw = new Draw(returnDrawId());
     this.alldraws.put(draw.getDrawid(), draw);
-    System.out.println("New Draw " + draw.toString());
+    System.out.println("\nNew Draw " + draw.toString());
     
     }    
+    
+    public void checkForWinningTicket() {
+//  edw prepei na ginei ena skartarisma
+//   twn deltiwn me vasi tin imeronia pou paixtikan kai me vasi tin imerominia tis klirwsis
+
+//Check if there's a winning ticket by the latest draw result
+    boolean results = false;
+    for(Map.Entry<Integer, Ticket> ticket : this.alltickets.entrySet()) {
+        if(
+                Utils.checkIfWin(this.alldraws.lastEntry().getValue().getWinningnumbers(), ticket.getValue().getSelectednumbers()) &&
+                Utils.checkIfWin(this.alldraws.lastEntry().getValue().getWinningjokernumber(), ticket.getValue().getSelectedjokernumbers())
+                ) {
+            results = true;
+            System.out.println("\nWe've got a winner!" + ticket.getValue().toString() +
+                    "\n Winner's name: " + ticket.getValue().getTicketplayer().getName());
+        
+        }
+    }
+    
+    if(!results) {
+        System.out.println("No winners this time -_-");
+    }
+    
+    }
 
     
     
@@ -115,7 +139,7 @@ public class OPAP {
             + "\n3. View Players."
             + "\n4. New draw."
             + "\n5. View draws."
-//            + "\n6. To view or access  courses."
+            + "\n6. Check for winners of the last draw."
 //            + "\n7. To view or access trainers."
 //            + "\n8. To view or access assignments."
 //            + "\n9. To view students that need to submit an assignment by a given date."
@@ -135,7 +159,7 @@ public class OPAP {
             if(choice == 3) {this.choosePlayerAndPlayTicket();}
             if(choice == 4) {this.newDraw();}
             if(choice == 5) {this.printDraws();}
-//            if(choice == 6) {this.printAccessEntity("course", "courses", this.courseList);}
+            if(choice == 6) {this.checkForWinningTicket();}
 //            if(choice == 7) {this.printAccessEntity("trainer", "trainers", this.trainerList);}
 //            if(choice == 8) {this.printAccessEntity("assignment", "assignments", this.assignmentList);}
 //            if(choice == 9) {System.out.println("Input date: ");this.printStudentsThatNeedToSubmitThisWeek(this.inputStringDate());}

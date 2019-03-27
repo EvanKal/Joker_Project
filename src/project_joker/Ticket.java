@@ -46,6 +46,20 @@ public class Ticket {
     public int getTicketid() {
         return ticketid;
     }
+
+    public SortedSet<Integer> getSelectednumbers() {
+        return selectednumbers;
+    }
+
+    public SortedSet<Integer> getSelectedjokernumbers() {
+        return selectedjokernumbers;
+    }
+
+    public Player getTicketplayer() {
+        return ticketplayer;
+    }
+    
+    
     
     
     public void addPlayerToTicket(Player player) {
@@ -57,28 +71,36 @@ public class Ticket {
     
         ArrayList numbersplayedarraylist = Utils.CollectChoices(sc, startnum, minimumnums, endnum, maxnums);
         
-        if( Utils.checkNumbersInput(numbersplayedarraylist)) {
-            
+        while(!Utils.checkNumbersInput(numbersplayedarraylist)) {
+            System.out.println("Your choices should be unique numbers. Type again:");
+            numbersplayedarraylist = Utils.CollectChoices(sc, startnum, minimumnums, endnum, maxnums);
+        }
+        
+//        if( Utils.checkNumbersInput(numbersplayedarraylist)) {
+
             selectednumbers.addAll(numbersplayedarraylist);
             System.out.println("Your numbers sorted: " + selectednumbers.toString());
             
-    } else {
-            System.out.println("Your choices should be unique numbers.");
-        }
+//    } 
     }
     
     public void chooseJokerNumbers(Scanner sc) {
     
-        ArrayList numbersplayedarraylist = Utils.CollectChoices(sc, startjokernum, minimumjokernums, endjokernum, maxjokernums);
+        ArrayList jokernumbersplayedarraylist = Utils.CollectChoices(sc, startjokernum, minimumjokernums, endjokernum, maxjokernums);
         
-        if( Utils.checkNumbersInput(numbersplayedarraylist)) {
+        while(!Utils.checkNumbersInput(jokernumbersplayedarraylist)) {
+            System.out.println("Your choices should be unique numbers. Type again:");
+            jokernumbersplayedarraylist = Utils.CollectChoices(sc, startjokernum, minimumjokernums, endjokernum, maxjokernums);
+        }
+        
+//        if( Utils.checkNumbersInput(jokernumbersplayedarraylist)) {
             
-            selectedjokernumbers.addAll(numbersplayedarraylist);
+            selectedjokernumbers.addAll(jokernumbersplayedarraylist);
             System.out.println("Your numbers sorted: " + selectedjokernumbers.toString());
             
-    } else {
-            System.out.println("Your choices should be unique numbers.");
-        }
+//    } else {
+//            System.out.println("Your choices should be unique numbers.");
+//        }
     }
 
     @Override
@@ -86,7 +108,7 @@ public class Ticket {
         return "\nYour Ticket: "
                 + "\n***Ticket id=" + ticketid + ", "
                 + "\n***Ticket date=" + ticketdate + ", "
-                + "\n***Player=" + ticketplayer + ", "
+                + "\n***Player=" + ticketplayer.getName() + ", "
                 + "\n***Selected numbers=" + selectednumbers + ", "
                 + "\n***Selected joker numbers=" + selectedjokernumbers + ", "
                 + "\n***Cost=" + cost;
