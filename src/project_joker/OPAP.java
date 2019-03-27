@@ -60,15 +60,21 @@ public class OPAP {
     public void printPlayers() {
         
         for (Map.Entry<Integer, Player> entry : this.allplayers.entrySet()) {
-                System.out.println("Player " + entry.getKey() + "\n " + entry.getValue());
+                System.out.println("Player " + entry.getKey() + "\n " + entry.getValue() + "\n");
         }
             
     }
     
-
-    
+    public void printDraws() {
+        
+        for (Map.Entry<Integer, Draw> entry : this.alldraws.entrySet()) {
+                System.out.println("Draw " + entry.getKey() + "\n " + entry.getValue() + "\n");
+        }
+            
+    }
             
     public void choosePlayerAndPlayTicket() {
+        
         if(this.allplayers.isEmpty()){
         System.out.println("\nNo players created. Please create a new player in order to play.");
         } else {
@@ -87,15 +93,15 @@ public class OPAP {
         this.allplayers.get(input).playNewTicket(this);
         
         }
-
-
-
-        //First choose object to edit
-
         }
         
         
-        
+    public void newDraw() {
+    Draw draw = new Draw(returnDrawId());
+    this.alldraws.put(draw.getDrawid(), draw);
+    System.out.println("New Draw " + draw.toString());
+    
+    }    
 
     
     
@@ -107,8 +113,8 @@ public class OPAP {
             + "\n1. Create new player."
             + "\n2. Play new ticket."
             + "\n3. View Players."
-//            + "\n4. Create one or more assignments."
-//            + "\n5. To view or access students."
+            + "\n4. New draw."
+            + "\n5. View draws."
 //            + "\n6. To view or access  courses."
 //            + "\n7. To view or access trainers."
 //            + "\n8. To view or access assignments."
@@ -127,9 +133,8 @@ public class OPAP {
             if(choice == 1) {this.createPlayer();}
             if(choice == 2) {this.choosePlayerAndPlayTicket();}
             if(choice == 3) {this.choosePlayerAndPlayTicket();}
-//            if(choice == 3) {this.initiateTrainerCreation();}
-//            if(choice == 4) {this.initiateAssignmentCreation();}
-//            if(choice == 5) {this.printAccessEntity("student", "students", this.studentList);}
+            if(choice == 4) {this.newDraw();}
+            if(choice == 5) {this.printDraws();}
 //            if(choice == 6) {this.printAccessEntity("course", "courses", this.courseList);}
 //            if(choice == 7) {this.printAccessEntity("trainer", "trainers", this.trainerList);}
 //            if(choice == 8) {this.printAccessEntity("assignment", "assignments", this.assignmentList);}
